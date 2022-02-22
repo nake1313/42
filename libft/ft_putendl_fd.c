@@ -14,17 +14,11 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	i;
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 
-	i = 0;
-	if (s)
-	{
-		while (s[i])
-		{
-			write(fd, &s[i++], 1);
-		}
-		write(fd, "\n", 1);
-	}
 }
 
 // int main()

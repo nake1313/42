@@ -12,35 +12,36 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
-	int	i;
+	const char *p;
 	int	s;
 	int	res;
 
-	i = 0;
+	p = nptr;
 	s = 1;
 	res = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (*p == ' ' || *p == '\n' || *p == '\t'
+		|| *p == '\v' || *p == '\f' || *p == '\r')
+		p++;
+	if (*p == '-')
+		s = -1;
+	if (*p == '-' || *p == '+')
+		p++;
+	while (*p >= '0' && *p <= '9')
 	{
-		if (str[i] == '-')
-			s = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = (res * 10) + (str[i] - 48);
-		i++;
+		res = (res * 10) + (*p - 48);
+		p++;
 	}
 	return (res * s);
 }
+/*
+#include <stdio.h>
 
-// int main()
-// {
-// 	char *sayi;
-// 	sayi = "-00123";
-// 	printf("%d", ft_atoi(sayi));
-// }
+int main()
+{
+	char *sayi;
+	sayi = "+123";
+	printf("%d", ft_atoi(sayi));
+}
+*/

@@ -18,7 +18,7 @@ void	ft_putnbr_fd(int n, int fd)
 	int		i;
 	long	nbr;
 
-	i = 0;
+	i = 9;
 	nbr = n;
 	if (nbr == 0)
 		write(fd, "0", 1);
@@ -29,11 +29,11 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	while (nbr)
 	{
-		s[i++] = nbr % 10 + 48;
+		s[i--] = nbr % 10 + 48;
 		nbr /= 10;
 	}
-	while (i--)
-		write(fd, s + i, 1);
+	i++;
+	write(fd, &s[i], ft_strlen(&s[i]));
 }
 
 // int main()

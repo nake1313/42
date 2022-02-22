@@ -1,4 +1,4 @@
-NAME = libft
+NAME = libft.a
 CC = gcc
 INC = libft.h
 CFLAGS = -Wall -Wextra -Werror
@@ -38,7 +38,7 @@ SRCS	= ft_isalnum.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
-		ft_putnbr_fd.c 
+		ft_putnbr_fd.c
 
 SRCS_BONUS	= ft_lstnew.c \
 		  ft_lstadd_front.c \
@@ -48,15 +48,15 @@ SRCS_BONUS	= ft_lstnew.c \
 		  ft_lstdelone.c \
 		  ft_lstclear.c \
 		  ft_lstiter.c \
-	  	  ft_lstmap.c	  
+	  	  ft_lstmap.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-all: $(NAME).a
+all: $(NAME)
 
-$(NAME).a: $(OBJS)
-	ar $(ARFLAGS) $(NAME).a $(OBJS)
+$(NAME): $(OBJS)
+	ar $(ARFLAGS) $(NAME) $(OBJS)
 
 %.o: %.c $(INC)
 	$(CC) -c $< -o $@ $(CFLAGS)
@@ -65,10 +65,10 @@ clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME).a
+	$(RM) $(NAME)
 
 bonus: $(OBJS) $(OBJS_BONUS)
-	ar $(ARFLAGS) $(NAME).a $(OBJS) $(OBJS_BONUS)
+	ar $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_BONUS)
 
 re: fclean all
 

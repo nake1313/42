@@ -15,32 +15,26 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
-	int		index;
-	int		indexx;
+	char	*p;
 
-	indexx = 0;
-	index = 0;
+	if (!s1 || !s2)
+		return (NULL);
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
 		return (NULL);
-	while (s1[index] != '\0')
-	{
-		dest[index] = s1[index];
-		index++;
-	}
-	while (s2[indexx] != '\0')
-	{
-		dest[index] = s2[indexx];
-		indexx++;
-		index++;
-	}
-	dest[index] = '\0';
+	p = dest;
+	while (*s1)
+		*p++ = *s1++;
+	while (*s2)
+		*p++ = *s2++;
+	*p = '\0';
 	return (dest);
 }
-
-// int main()
-// {
-// 	char *s1 = "ahmet";
-// 	char *s2 = "can";
-// 	printf("%s", ft_strjoin(s1, s2));
-// }
+/*
+int main()
+{
+	char *s1 = "tomato";
+	char *s2 = "bibero";
+	printf("%s", ft_strjoin(s1, s2));
+}
+*/

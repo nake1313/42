@@ -12,14 +12,15 @@
 
 #include "libft.h"
 
-void	ft_bzero(void *ptr, size_t nbyte)
+void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(ptr, 0, nbyte);
+	ft_memset(s, 0, n);
 }
-
-// int main()
-// {
-// 	int arr[5] = {1,2,3,4,5};
-// 	ft_bzero(&arr, 12);
-// 	printf("%d,%d,%d,%d", arr[0],arr[1],arr[2],arr[3]);
-// }
+/*
+int main()
+{
+	int arr[5] = {1,2,3,4,5};
+	ft_bzero(&arr, 12);
+	printf("%d,%d,%d,%d", arr[0],arr[1],arr[2],arr[3]);
+}
+*/

@@ -12,20 +12,21 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *arg)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	const char *p;
 
-	i = 0;
-	while (arg[i])
-	{
-		i++;
-	}
-	return (i);
+	p = s;
+	while (*p)
+		p++;
+	return (p - s);
 }
+/*
+#include <stdio.h>
 
-// int main()
-// {
-// 	char *str = "ahmet can fakili";
-// 	printf("%u", ft_strlen(str));
-// }
+int main()
+{
+	char *str = "Nazmi";
+	printf("%ld",ft_strlen(str));
+}
+*/

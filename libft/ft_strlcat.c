@@ -15,22 +15,22 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	char *p;
 
 	if (size <= ft_strlen(dst))
 		return (size + ft_strlen(src));
-	i = ft_strlen(dst);
-	while (*src && i + 1 < size)
-	{
-		dst[i] = *src++;
-		i++;
-	}
-	dst[i] = '\0';
+	p = dst+ft_strlen(dst);
+	i = size - ft_strlen(dst);
+	while (*src && --i)
+		*p++ = *src++;
+	*p = '\0';
 	return (ft_strlen(dst) + ft_strlen(src));
 }
-
-// int main()
-// {
-//     char s1[50] = "ahmet can";
-//     char s2[50] = "fakili";
-//     printf("%d", ft_strlcat(s1, s2, 20));
-// }
+/*
+int main()
+{
+	char s1[50] = "ahmet can";
+	char s2[50] = "fakili";
+	printf("%d", ft_strlcat(s1, s2, 20));
+}
+*/

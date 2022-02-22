@@ -17,14 +17,9 @@ static int	length(long nb)
 	int	len;
 
 	len = 0;
-	if (nb == 0)
+	if (nb <= 0)
 		len = 1;
-	else if (nb < 0)
-	{
-		nb = -nb;
-		len++;
-	}
-	while (nb > 0)
+	while (nb)
 	{
 		nb /= 10;
 		len++;
@@ -35,28 +30,28 @@ static int	length(long nb)
 char	*ft_itoa(int n)
 {
 	long	nb;
-	char	*string;
+	char	*str;
 	size_t	i;
 
 	nb = n;
 	i = length(nb);
-	string = (char *)malloc(sizeof(char) * (i + 1));
-	if (!string)
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
-	string[i--] = '\0';
+	str[i--] = '\0';
 	if (nb == 0)
-		string[0] = '0';
+		str[0] = '0';
 	if (nb < 0)
 	{
-		string[0] = '-';
+		str[0] = '-';
 		nb = -nb;
 	}
 	while (nb > 0)
 	{
-		string[i--] = (nb % 10) + 48;
+		str[i--] = (nb % 10) + 48;
 		nb /= 10;
 	}
-	return (string);
+	return (str);
 }
 
 // int main()
