@@ -1,7 +1,7 @@
 NAME = libft.a
 CC = gcc
 INC = libft.h
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -c -g
 ARFLAGS = -rcs
 RM = rm -rf
 
@@ -38,7 +38,7 @@ SRCS	= ft_isalnum.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c \
 
 SRCS_BONUS	= ft_lstnew.c \
 		  ft_lstadd_front.c \
@@ -59,7 +59,7 @@ $(NAME): $(OBJS)
 	ar $(ARFLAGS) $(NAME) $(OBJS)
 
 %.o: %.c $(INC)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
@@ -72,4 +72,4 @@ bonus: $(OBJS) $(OBJS_BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm so
