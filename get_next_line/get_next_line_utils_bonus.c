@@ -6,7 +6,7 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 02:22:36 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/02/23 02:24:32 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/01 01:15:29 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 size_t	ft_strlen(const char *s)
 {
-	const char *ptr;
+	const char *p;
 
-	ptr = s;
+	p = s;
 	while (*s)
-	s++;
-	return (s-ptr);
+		s++;
+	return (s - p);
 }
 
 char	*ft_strchr(const char *str, int c)
 {
 	if(!str)
-	return (NULL);
+		return (NULL);
 	while (*str++)
 	{
 		if (*str == (char)c)
@@ -39,21 +39,25 @@ char	*ft_strchr(const char *str, int c)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*r;
-	size_t	i;
+	char	*dest;
+	char	*p;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
-	r = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (r == NULL)
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!dest)
 		return (NULL);
-	i = 0;
-	while (*s1 != '\0')
-		r[i++] = *s1++;
-	while (*s2 != '\0')
-		r[i++] = *s2++;
-	r[i] = '\0';
-	return (r);
+	p = dest;
+	while (*s1)
+		*p++ = *s1++;
+	while (*s2)
+		*p++ = *s2++;
+	*p = 0;
+	return (dest);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -62,23 +66,37 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*p;
 	size_t	size;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	size = ft_strlen(s);
-	if (start > size)
-		{
-			p = malloc(1 * sizeof(char));
-			p[0] = '\0';
-			return (p);
-		}
 	if (start + len > size)
 		len = size - start;
+	if (start > size)
+		len = 0;
 	dest = (char *)malloc(sizeof(char) * (len + 1));
-	if (dest == NULL)
+	if (!dest)
 		return (NULL);
 	p = dest;
 	while (len--)
-		*dest++ = *(s+start++);
+		*dest++ = *(s + start++);
 	*dest = '\0';
 	return (p);
+}
+
+char	*ft_strdup(const char *str)
+{
+	size_t	size;
+	char	*dest;
+	char	*p;
+
+	if (!str)
+		return (NULL);
+	size = ft_strlen(str) + 1;
+	dest = (char *)malloc(sizeof(char) * size);
+	if (!dest)
+		return (NULL);
+	p = dest;
+	while (size-- > 0)
+		*p++ = *str++;
+	return (dest);
 }

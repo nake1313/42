@@ -6,14 +6,13 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 02:22:53 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/02/23 03:13:28 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/01 01:19:08 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "get_next_line.h"
 
-char	*ft_get_line(char *save)
+static char	*ft_get_line(char *save)
 {
 	char	*s;
 	char	*p;
@@ -29,7 +28,7 @@ char	*ft_get_line(char *save)
 	return (s);
 }
 
-char	*ft_save(char *save)
+static char	*ft_save(char *save)
 {
 	char	*s;
 	char	*p;
@@ -44,11 +43,12 @@ char	*ft_save(char *save)
 		save++;
 	if (*save == '\n')
 		save++;
-	s = ft_substr(save, 0, ft_strlen(save));
+	s = ft_strdup(save);
 	free(p);
 	return (s);
 }
-char	*ft_sw(char *a, char *b)
+
+static char	*ft_swap_free(char *a, char *b)
 {
 	char	*tmp;
 
@@ -58,7 +58,7 @@ char	*ft_sw(char *a, char *b)
 	return a;
 }
 
-char	*ft_read_and_save(int fd, char *save)
+static char	*ft_read_and_save(int fd, char *save)
 {
 	char	*buff;
 	int		read_bytes;
@@ -77,12 +77,7 @@ char	*ft_read_and_save(int fd, char *save)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		if(save == NULL)
-		{
-			save = malloc(1 * sizeof(char));
-			save[0] = '\0';
-		}
-		save = ft_sw(save,ft_strjoin(save,buff));
+		save = ft_swap_free(save,ft_strjoin(save,buff));
 	}
 	free(buff);
 	return (save);
