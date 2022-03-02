@@ -6,7 +6,7 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:36:36 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/03/02 20:54:35 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/02 22:04:29 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	size_t	i;
-	long	nb;
+	int		nb;
 
 	nb = n;
 	i = 1 + (n <= 0);
@@ -30,11 +30,12 @@ char	*ft_itoa(int n)
 		*str = '0';
 	if (nb < 0)
 		*str = '-';
-	if (nb < 0)
-		nb = -nb;
 	while (nb)
 	{
+		if (nb > 0)
 		*(str + i--) = 48 + nb % 10;
+		else
+		*(str + i--) = 48 - nb % 10;
 		nb /= 10;
 	}
 	return (str);
