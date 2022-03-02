@@ -6,7 +6,7 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 02:22:32 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/03/01 01:07:35 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/02 21:21:33 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	const char *p;
+	const char	*p;
 
 	p = s;
 	while (*s)
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *str, int c)
 {
-	if(!str)
+	if (!str)
 		return (NULL);
 	while (*str++)
 	{

@@ -6,7 +6,7 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 02:22:17 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/03/01 01:19:19 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/02 21:20:40 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_get_line(char *save)
 	p = save;
 	while (*save != '\n' && *save)
 		save++;
-	if(*save == '\n')
+	if (*save == '\n')
 		save++;
 	s = ft_substr(p, 0, save - p);
 	return (s);
@@ -48,21 +48,11 @@ static char	*ft_save(char *save)
 	return (s);
 }
 
-static char	*ft_swap_free(char *a, char *b)
-{
-	char	*tmp;
-
-	tmp = a;
-	a = b;
-	free(tmp);
-	return a;
-}
-
 static char	*ft_read_and_save(int fd, char *save)
 {
 	char	*buff;
 	int		read_bytes;
-
+	char	*tmp;
 
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
@@ -77,13 +67,15 @@ static char	*ft_read_and_save(int fd, char *save)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		save = ft_swap_free(save,ft_strjoin(save,buff));
+		tmp = save;
+		save = ft_strjoin(save, buff);
+		free(tmp);
 	}
 	free(buff);
 	return (save);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*save;
