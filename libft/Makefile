@@ -72,4 +72,4 @@ bonus: $(OBJS) $(OBJS_BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re norm so
+.PHONY: all clean fclean re

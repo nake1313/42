@@ -6,7 +6,7 @@
 /*   By: nkerioz <kerioznazmi46@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:39:35 by nkerioz           #+#    #+#             */
-/*   Updated: 2022/03/01 01:40:46 by nkerioz          ###   ########.fr       */
+/*   Updated: 2022/03/02 18:58:54 by nkerioz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	count_words(const char *str, char c)
 	i = 0;
 	while (*str)
 	{
-		if(*str != c && (*(str + 1) == c || *(str + 1) == '\0'))
-		i++;
-		str++;
+		if (*str != c && (*(str + 1) == c || *(str + 1) == '\0'))
+			i++;
+	str++;
 	}
 	return (i);
 }
@@ -33,7 +33,7 @@ char	**ft_split(char const *s, char c)
 	char	**split;
 	char	**p;
 
-	if(!s)
+	if (!s)
 		return (0);
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!split)
@@ -42,13 +42,13 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		while(s[i] == c && s[i] != '\0')
-		i++;
+		while (s[i] == c)
+			i++;
 		index = i;
-		while(s[i] != c && s[i] != '\0')
-		i++;
-		if(i > index)
-		*p++ = ft_substr(s, index, i - index);
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		if (i > index)
+			*p++ = ft_substr(s, index, i - index);
 	}
 	*p = 0;
 	return (split);

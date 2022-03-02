@@ -29,11 +29,11 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	while (nbr)
 	{
-		*(s+i--) = nbr % 10 + 48;
+		*(s + i--) = nbr % 10 + 48;
 		nbr /= 10;
 	}
 	i++;
-	write(fd, s+i, ft_strlen(s+i));
+	write(fd, s + i, 10 - i);
 }
 
 // int main()

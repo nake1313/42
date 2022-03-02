@@ -14,7 +14,7 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	const char *p;
+	const char	*p;
 
 	if (!s1 || !set)
 		return (0);

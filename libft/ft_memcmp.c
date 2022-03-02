@@ -22,15 +22,17 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (n--)
 	{
 		if (*p1++ != *p2++)
-			return (*(p1 - 1) - *(p2 - 1));
+			return (*--p1 - *--p2);
 	}
 	return (0);
 }
-
-// int main()
-// {
-// 	char *str1, *str2;
-// 	str1 = "ahmet";
-// 	str2 = "canahmet";
-// 	printf("%d", ft_memcmp(str1, str2, 3));
-// }
+/*
+#include <stdio.h>
+int main()
+{
+char *str1, *str2;
+str1 = "ahmet";
+str2 = "ahmetX";
+printf("%d", ft_memcmp(str1, str2, 7));
+}
+*/
